@@ -30,7 +30,12 @@ trait Rep[T] {
 
 @Service
 class TaskRep extends Rep[Task] {
-  override def create(): Task = ???
+
+  import ctx._
+
+  override def create(): Task = ctx.run{
+    query[Task].insertValue(lift(Task(123, "asd", 321)))
+  }
 
   override def update(): Long = ???
 

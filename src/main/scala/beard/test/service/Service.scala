@@ -10,7 +10,7 @@ trait Service[F[_], T, ID] extends CRUD[F, T, ID]
 
 
 @stereotype.Service
-class TaskService(@Autowired rep: Rep[Task]) extends Service[Try, Task, Long] {
+class TaskService(@Autowired private val rep: Rep[Task]) extends Service[Try, Task, Long] {
   override def findById(id: Long): Try[Task] = ???
 
   override def create(entity: Task): Try[Task] = Try {
