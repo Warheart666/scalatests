@@ -14,7 +14,8 @@ class TestController(@Autowired private val service: Service[Try, Task, Long]) {
   @GetMapping
   def test(): Unit = {
     val task = Task(1, "agdfjasgdfjhasgdf", 666)
-    service.create(task)
+    val triedLong = service.create(task)
+    print(triedLong)
   }
 
 }

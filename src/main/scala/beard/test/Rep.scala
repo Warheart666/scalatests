@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 trait Rep[T] {
 
 
-  def create(): T
+  def create(): Long
 
   def update(): Long
 
@@ -33,9 +33,17 @@ class TaskRep extends Rep[Task] {
 
   import ctx._
 
-  override def create(): Task = ctx.run{
-    query[Task].insertValue(lift(Task(123, "asd", 321)))
+  implicit val meta = ctx.insertMeta[Task](_.id)
+
+
+  override def create(): Long = {
+    print("hkjl")
+
+    ctx.run {
+      query[Task].insert(lift(Task(123, "asd", 321)))
+    }
   }
+
 
   override def update(): Long = ???
 

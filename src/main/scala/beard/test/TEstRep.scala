@@ -20,7 +20,7 @@ class TEstRep {
   def create(person: Person) = {
     test()
     ctx.run {
-      query[Person].insertValue(lift(person))
+      query[Person].insert(lift(person))
     }
   }
 

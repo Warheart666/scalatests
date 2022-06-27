@@ -13,7 +13,7 @@ trait Service[F[_], T, ID] extends CRUD[F, T, ID]
 class TaskService(@Autowired private val rep: Rep[Task]) extends Service[Try, Task, Long] {
   override def findById(id: Long): Try[Task] = ???
 
-  override def create(entity: Task): Try[Task] = Try {
+  override def create(entity: Task): Try[Long] = Try {
     rep.create()
   }
 
